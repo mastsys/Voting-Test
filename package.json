@@ -1,0 +1,11 @@
+{
+  "name": "hardhat-project",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.9.1",
+    "@openzeppelin/test-helpers": "^0.5.16"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "solidity-coverage": "^0.8.2"
+  }
+}
