@@ -48,6 +48,10 @@ describe("Voting", function () {
         await expect(voting.endProposalsRegistering()).to.be.revertedWith("Registering proposals havent started yet")
     });
 
+    it('should NOT endProposalsRegistering if not Owner', async function() {
+        await expect(voting.connect(voter1).endProposalsRegistering()).to.be.revertedWith('Ownable: caller is not the owner')
+    })
+
     it('should NOT add proposal fot this status', async function() {
         await voting.addVoter(voter1.address)
         await expect(voting.connect(voter1).addProposal("First Proposal")).to.be.revertedWith('Proposals are not allowed yet')
@@ -96,6 +100,10 @@ describe("Voting", function () {
     it('should NOT startVotingSession', async function() {
         await expect(voting.startVotingSession()).to.be.revertedWith("Registering proposals phase is not finished")
     });
+
+    it('should NOT startVotingSession if not Owner', async function() {
+        await expect(voting.connect(voter1).startVotingSession()).to.be.revertedWith('Ownable: caller is not the owner')
+    })
     
   });
   
@@ -155,6 +163,10 @@ describe("Voting", function () {
         await expect(voting.tallyVotes()).to.be.revertedWith("Current status is not voting session ended")
     });
     
+    it('should NOT tallyVotes if not Owner', async function() {
+        await expect(voting.connect(voter1).tallyVotes()).to.be.revertedWith('Ownable: caller is not the owner')
+    })
+
   });
 
   describe("End Vote session and Tally", function () {
